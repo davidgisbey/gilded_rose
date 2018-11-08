@@ -40,6 +40,24 @@ describe GildedRose do
       end
     end
 
+    context 'when item is conjured' do
+       context 'before sell_in' do
+         it 'lowers quality by two after one day' do
+           item = Item.new("Conjured", 1, 2)
+           GildedRose.new([item]).update_quality
+           expect(item.quality).to eq(0)
+         end
+       end
+
+    context 'after sell_in' do
+        it 'conjured items lower in quality by four after sell by date' do
+              item = Item.new("Conjured", 0, 50)
+              GildedRose.new([item]).update_quality
+              expect(item.quality).to eq(46)
+            end
+          end
+        end
+
     context 'when item is Aged Brie' do
       context 'before sell_in' do
         it 'raises quality by one after a day' do
